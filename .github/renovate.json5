@@ -3,13 +3,16 @@
   "extends": [
     "config:base"
   ],
+  // --- 0. CRITICAL FIX ---
+  // Force Renovate to use 'fix:' and 'feat:' prefixes,
+  // even if the repo history is empty.
+  "semanticCommits": "enabled",
   // --- 1. AUTOMATION SETTINGS ---
   "automerge": true,
   "platformAutomerge": true,
-  // --- 2. STRICT SAFETY SETTINGS ---
   "rebaseWhen": "behind-base-branch",
   "stopUpdatingLabel": "renovate-stop",
-  // --- 3. CUSTOM MANAGERS ---
+  // --- 2. CUSTOM MANAGERS ---
   "customManagers": [
     {
       "customType": "regex",
@@ -24,10 +27,9 @@
       "versioningTemplate": "loose"
     }
   ],
-  // --- 4. PACKAGE RULES (The Logic Logic) ---
+  // --- 3. PACKAGE RULES ---
   "packageRules": [
-    // RULE 1: Global Silence
-    // Default all updates to "chore" so they do NOT trigger a release.
+    // RULE 1: Global Silence (Default to chore)
     {
       "matchPackagePatterns": [
         "*"
@@ -35,18 +37,16 @@
       "semanticCommitType": "chore"
     },
     // RULE 2: Cloudflare Exception
-    // Explicitly set this to "fix" so Release Please creates a release.
-    // We set groupName to null to ensure it never gets bundled with other stuff.
     {
       "matchDepNames": [
         "cloudflare/cloudflared"
       ],
+      // CHANGED TO "feat" because you asked for a MINOR release.
+      // "fix" = Patch (1.0.1), "feat" = Minor (1.1.0)
       "semanticCommitType": "fix",
       "groupName": null
     },
-    // RULE 3: Noise Reduction (The "Catch-All" Group)
-    // Group all other minor/patch updates into one PR.
-    // CRITICAL: We must EXCLUDE Cloudflare, or this rule would override Rule 2.
+    // RULE 3: Noise Reduction
     {
       "matchUpdateTypes": [
         "minor",
