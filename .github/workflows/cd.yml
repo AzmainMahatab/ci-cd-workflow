@@ -60,9 +60,10 @@ jobs:
           path: dist
           merge-multiple: true
 
-      - name: Publish to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        # No password needed if using Trusted Publishing (OIDC)
+#Publish is suppressed for now
+#      - name: Publish to PyPI
+#        uses: pypa/gh-action-pypi-publish@release/v1
+#        # No password needed if using Trusted Publishing (OIDC)
 
       - name: Upload to GitHub Release
         uses: softprops/action-gh-release@v2
