@@ -1,0 +1,47 @@
+name: ci
+on:
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - 'cloudflared.version'
+  workflow_dispatch: # UI button
+  workflow_call: # Make callable by other workflows
+
+
+jobs:
+  test:
+    name: Test on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
+
+    steps:
+      # 1. Bring your code onto the runner
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          # If triggered by workflow_run, grab the commit that triggered it.
+          # Otherwise (e.g., normal PR), use the default behavior.
+          ref: ${{ github.event.workflow_run.head_sha || github.ref }}
+
+          # This ensures we pull from the fork/branch correctly if it's a PR from a fork
+          repository: ${{ github.event.workflow_run.head_repository.full_name || github.repository }}
+
+      - name: Install Hatch
+        uses: pypa/hatch@install
+
+      - name: Bump version
+        run: hatch version patch
+
+      - name: Run tests
+        run: hatch test -- -s
+
+  test-report:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "All good!"
+

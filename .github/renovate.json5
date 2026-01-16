@@ -1,0 +1,61 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base"
+  ],
+  // --- 1. AUTOMATION SETTINGS ---
+  "automerge": true,
+  "platformAutomerge": true,
+  // --- 2. STRICT SAFETY SETTINGS ---
+  "rebaseWhen": "behind-base-branch",
+  "stopUpdatingLabel": "renovate-stop",
+  // --- 3. CUSTOM MANAGERS ---
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": [
+        "^cloudflared\\.version$"
+      ],
+      "matchStrings": [
+        "^(?<currentValue>\\d{4}\\.\\d+\\.\\d+)$"
+      ],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "cloudflare/cloudflared",
+      "versioningTemplate": "loose"
+    }
+  ],
+  // --- 4. PACKAGE RULES (The Logic Logic) ---
+  "packageRules": [
+    // RULE 1: Global Silence
+    // Default all updates to "chore" so they do NOT trigger a release.
+    {
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "semanticCommitType": "chore"
+    },
+    // RULE 2: Cloudflare Exception
+    // Explicitly set this to "fix" so Release Please creates a release.
+    // We set groupName to null to ensure it never gets bundled with other stuff.
+    {
+      "matchDepNames": [
+        "cloudflare/cloudflared"
+      ],
+      "semanticCommitType": "fix",
+      "groupName": null
+    },
+    // RULE 3: Noise Reduction (The "Catch-All" Group)
+    // Group all other minor/patch updates into one PR.
+    // CRITICAL: We must EXCLUDE Cloudflare, or this rule would override Rule 2.
+    {
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "excludeDepNames": [
+        "cloudflare/cloudflared"
+      ],
+      "groupName": "all non-major dependencies"
+    }
+  ]
+}

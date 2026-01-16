@@ -1,0 +1,61 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ci-cd-workflow"
+dynamic = ["version"]
+description = ''
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+keywords = []
+authors = [
+  { name = "Azmain", email = "azmainmahatab012@gmail.com" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = []
+
+[project.urls]
+Documentation = "https://github.com/Azmain/ci-cd-workflow#readme"
+Issues = "https://github.com/Azmain/ci-cd-workflow/issues"
+Source = "https://github.com/Azmain/ci-cd-workflow"
+
+[tool.hatch.version]
+path = "src/ci_cd_workflow/__about__.py"
+
+[tool.hatch.envs.types]
+extra-dependencies = [
+  "mypy>=1.0.0",
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/ci_cd_workflow tests}"
+
+[tool.coverage.run]
+source_pkgs = ["ci_cd_workflow", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/ci_cd_workflow/__about__.py",
+]
+
+[tool.coverage.paths]
+ci_cd_workflow = ["src/ci_cd_workflow", "*/ci-cd-workflow/src/ci_cd_workflow"]
+tests = ["tests", "*/ci-cd-workflow/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]

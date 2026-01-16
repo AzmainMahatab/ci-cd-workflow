@@ -1,0 +1,32 @@
+pull_request_rules:
+  # RULE 1: Merge the Release PR (Safe & Quiet)
+  - name: Automatic squash merge for Release Please
+    conditions:
+      - "author=release-please[bot]"
+      - "label=autorelease: pending"
+
+      # Safety: Do not merge if main has moved ahead (prevents race conditions)
+      - "#commits-behind=0"
+
+      # Universal Safety Lock:
+      # "Don't merge if ANY check failed or is still running."
+      # This auto-detects all your CI jobs (Build Wheels, Tests, Lint, etc).
+      - "#check-failure=0"
+      - "#check-pending=0"
+
+    actions:
+      merge:
+        method: squash
+
+  # RULE 2: Keep the Branch Up-to-Date (Aggressive)
+  - name: Auto-update branch if behind main
+    conditions:
+      - "author=release-please[bot]"
+      - "base=main"
+
+      # Trigger immediately if main moves ahead
+      - "#commits-behind>0"
+
+    actions:
+      # Merges 'main' into the PR to fix the "behind" status
+      update: { }
