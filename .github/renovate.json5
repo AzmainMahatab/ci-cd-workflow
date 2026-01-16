@@ -9,7 +9,8 @@
   "semanticCommits": "enabled",
   // --- 1. AUTOMATION SETTINGS ---
   "automerge": true,
-//  "platformAutomerge": true,
+  //  "platformAutomerge": true,
+  "automergeStrategy": "squash",
   "rebaseWhen": "behind-base-branch",
   "stopUpdatingLabel": "renovate-stop",
   // --- 2. CUSTOM MANAGERS ---
@@ -41,7 +42,6 @@
       "matchDepNames": [
         "cloudflare/cloudflared"
       ],
-      // CHANGED TO "feat" because you asked for a MINOR release.
       // "fix" = Patch (1.0.1), "feat" = Minor (1.1.0)
       "semanticCommitType": "fix",
       "groupName": null
