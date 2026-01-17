@@ -19,11 +19,8 @@ jobs:
     steps:
       - uses: googleapis/release-please-action@v4
         id: release
-        with:
-          #          release-type: python
-          token: ${{ secrets.GITHUB_TOKEN }}
-#          config-file: release-please-config.json
-#          manifest-file: .release-please-manifest.json
+#        with:
+#          token: ${{ secrets.GITHUB_TOKEN }}
 
   # JOB 2: WHEEL BUILDER (Matrix)
   build-wheels:
