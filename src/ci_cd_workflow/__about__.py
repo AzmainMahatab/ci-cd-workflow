@@ -1,4 +1,4 @@
 # SPDX-FileCopyrightText: 2026-present Azmain <azmainmahatab012@gmail.com>
 #
 # SPDX-License-Identifier: MIT
-__version__ = "0.2.10"  # x-release-please-version
+__version__ = "0.2.11"  # x-release-please-version
