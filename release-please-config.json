@@ -3,7 +3,10 @@
     ".": {
       "release-type": "python",
       "package-name": "ci-cd-workflow",
-      "version-file": "src/ci_cd_workflow/__about__.py"
+      "version-file": "src/ci_cd_workflow/__about__.py",
+      "extra-files": [
+        "src/ci_cd_workflow/__about__.py"
+      ]
     }
   },
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json"

@@ -18,7 +18,7 @@ pull_request_rules:
     actions:
       merge:
         method: squash
-
+      delete_head_branch: { }
   # RULE 2: Keep the Branch Up-to-Date (Aggressive)
   - name: Auto-update branch if behind main
     conditions:
