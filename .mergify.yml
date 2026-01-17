@@ -3,7 +3,6 @@ pull_request_rules:
   - name: Automatic squash merge for Release Please
     conditions:
       - "author=github-actions[bot]"
-      #      - "author=release-please[bot]"
       - "label=autorelease: pending"
 
       # Safety: Do not merge if main has moved ahead (prevents race conditions)
