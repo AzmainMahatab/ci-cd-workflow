@@ -21,8 +21,8 @@ jobs:
         id: release
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          config-file: release-please-config.json
-          manifest-file: .release-please-manifest.json
+  #          config-file: release-please-config.json
+  #          manifest-file: .release-please-manifest.json
 
   # JOB 2: WHEEL BUILDER (Matrix)
   build-wheels:
@@ -60,10 +60,10 @@ jobs:
           path: dist
           merge-multiple: true
 
-#Publish is suppressed for now
-#      - name: Publish to PyPI
-#        uses: pypa/gh-action-pypi-publish@release/v1
-#        # No password needed if using Trusted Publishing (OIDC)
+      #Publish is suppressed for now
+      #      - name: Publish to PyPI
+      #        uses: pypa/gh-action-pypi-publish@release/v1
+      #        # No password needed if using Trusted Publishing (OIDC)
 
       - name: Upload to GitHub Release
         uses: softprops/action-gh-release@v2
