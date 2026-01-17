@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.8](https://github.com/AzmainMahatab/ci-cd-workflow/compare/v0.2.7...v0.2.8) (2026-01-17)
+
+
+### Bug Fixes
+
+* version bump effect 6 ([d869b7e](https://github.com/AzmainMahatab/ci-cd-workflow/commit/d869b7e152410a5defa949f56afa2325e486f20b))
+
 ## [0.2.7](https://github.com/AzmainMahatab/ci-cd-workflow/compare/v0.2.6...v0.2.7) (2026-01-17)
 
 
