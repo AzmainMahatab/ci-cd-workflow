@@ -4,6 +4,7 @@
       "release-type": "python",
       "extra-files": [
         {
+          "type": "generic",
           "path": "src/ci_cd_workflow/__about__.py"
         }
       ]
