@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.4](https://github.com/AzmainMahatab/ci-cd-workflow/compare/ci-cd-workflow-v0.0.3...ci-cd-workflow-v0.0.4) (2026-01-17)
+
+
+### Bug Fixes
+
+* version bump ([81df50c](https://github.com/AzmainMahatab/ci-cd-workflow/commit/81df50c81ce77e1cca4f27c5007a306db713b14f))
+
 ## [0.0.3](https://github.com/AzmainMahatab/ci-cd-workflow/compare/ci-cd-workflow-v0.0.2...ci-cd-workflow-v0.0.3) (2026-01-17)
 
 
