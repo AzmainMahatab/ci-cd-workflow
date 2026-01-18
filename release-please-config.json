@@ -1,11 +1,15 @@
 {
   "packages": {
     ".": {
-      "release-type": "simple",
+      "release-type": "python",
+      "versioning": "prerelease",
+      "prerelease-type": "b",
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true,
       "extra-files": [
         {
           "type": "generic",
-          "path": "src/ci_cd_workflow/__about__.py"
+          "path": "src/pyflared/__about__.py"
         }
       ]
     }
