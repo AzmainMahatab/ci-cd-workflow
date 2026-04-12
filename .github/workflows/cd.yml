@@ -62,7 +62,7 @@ jobs:
       #        # No password needed if using Trusted Publishing (OIDC)
 
       - name: Upload to GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ needs.release-please.outputs.tag_name }}
           files: dist/*.whl
